@@ -10,7 +10,7 @@ function Histogram(x, y, width, height, data, group, max_val) {
     var group = group
     var buckets = []
 
-    var bucketWidth = width/data.length
+    var bucketWidth = this.width/data.length
 
 
     function addBuckets() {
