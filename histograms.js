@@ -3,18 +3,21 @@ function Histograms(x, y, plotWidth, plotHeight) {
     var y = y;
     var plotWidth = plotWidth;
     var plotHeight = plotHeight;
+    //find max value to determine plot height
     var max_val = plotHeight
 
     //mock data to test display
-    var data = [[100,200,399, 300, 200, 50], [100,200,200, 300, 400, 500]]
+    // var data = [[100,200,399, 300, 200, 50], [100,200,200, 300, 400, 500]]
 
     var histograms = [];
 
-    var columns = columns; //list of columns to use for generating histogram
+    var columns = ['test1','test2']; //list of columns to use for generating histogram
 
     var groups = []; //contains attributes of each histogram to be generated
 
     var colors = ["red", "green", "blue"]
+
+    var self = this
 
     //receives raw_data and output array of frequency buckets for each
     this.dataProcessing = function(raw_data, bins, columns) {
@@ -38,12 +41,11 @@ function Histograms(x, y, plotWidth, plotHeight) {
         }
     }
 
-    
-
     function addHistogram() {
-        let data = this.dataProcessing(0,0,0)
+        let data = self.dataProcessing(0,0,0)
+        // console.log(data)
         for (var i=0; i< groups.length; i++) {
-            histograms.push(new Histogram(x, y, plotWidth, plotHeight, data[i], groups[i], max_val))
+            histograms.push(new Histogram(x, y, plotWidth, plotHeight, data[i], groups[i]))
         }
     }
 

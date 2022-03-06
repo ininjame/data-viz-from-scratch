@@ -54,10 +54,10 @@ function payGapHist() {
 
     };
 
-    this.hist = new Histograms(this.layout.leftMargin, 
-                                this.layout.rightMargin, 
-                                this.layout.plotWidth, 
-                                this.layout.plotHeight)
+    this.hist = new Histograms(width/8, 
+                                height/2, 
+                                width*0.8, 
+                                height*0.8)
 
     this.draw = function() {
         if (!this.loaded) {

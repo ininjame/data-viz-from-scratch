@@ -1,4 +1,4 @@
-function Histogram(x, y, width, height) {
+function Histogram(x, y, width, height, data, group) {
     var x = x;
     var y = y;
     var w = width;
@@ -6,28 +6,31 @@ function Histogram(x, y, width, height) {
      
     var buckets = []
 
-    var bucketWidth = w/data.length
 
 
-    function addBuckets(data, group, max_val) {
+    function addBuckets() {
         var bucketX = x; 
+        var bucketWidth = w/data.length;
+        var max_val = max(data)
         for (var i = 0; i < data.length; i++) {
-            var bucketHeight = map(data[i], 0, max_val, y-h, h)
-            var bucketY = y + h - bucketHeight
+            var bucketHeight = map(data[i], 0, max_val, 0, h)
+            console.log(bucketHeight)
+            var bucketY = y - bucketHeight
             buckets.push(new Bucket(bucketX, bucketY, bucketWidth, bucketHeight, group))
+            bucketX += bucketWidth + 2
         }
     }
 
     function dataProcessing() {
-        
+        return;   
     }
 
-    
     addBuckets()
 
     this.draw = function(){
         for (var i=0; i < buckets.length; i++) {
             buckets[i].draw()
+            buckets[i].mouseOver()
         }
 
     }
