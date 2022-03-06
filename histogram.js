@@ -1,28 +1,26 @@
-function Histogram(x, y, width, height, data, group, max_val) {
+function Histogram(x, y, width, height) {
     var x = x;
     var y = y;
-    var width = width;
-    var height = height;
-    var max_val = max_val;
-    
-    var data = data
+    var w = width;
+    var h = height;
      
-    var group = group
     var buckets = []
 
-    var bucketWidth = this.width/data.length
+    var bucketWidth = w/data.length
 
 
-    function addBuckets() {
+    function addBuckets(data, group, max_val) {
         var bucketX = x; 
         for (var i = 0; i < data.length; i++) {
-            var bucketHeight = map(data[i], 0, max_val, y-height, height)
-            var bucketY = y + height - bucketHeight
+            var bucketHeight = map(data[i], 0, max_val, y-h, h)
+            var bucketY = y + h - bucketHeight
             buckets.push(new Bucket(bucketX, bucketY, bucketWidth, bucketHeight, group))
         }
     }
 
-
+    function dataProcessing() {
+        
+    }
 
     
     addBuckets()

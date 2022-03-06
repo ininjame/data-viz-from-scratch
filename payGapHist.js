@@ -7,6 +7,7 @@ function payGapHist() {
     // characters.
     this.id = 'pay-gap-hist';
 
+    var marginSize = 35;
     //Chart layout
     this.layout = {
         marginSize: marginSize,
@@ -53,13 +54,18 @@ function payGapHist() {
 
     };
 
+    this.hist = new Histograms(this.layout.leftMargin, 
+                                this.layout.rightMargin, 
+                                this.layout.plotWidth, 
+                                this.layout.plotHeight)
+
     this.draw = function() {
         if (!this.loaded) {
             console.log('Data not yet loaded');
             return;
         }
 
-        console.log('Testing')
+        this.hist.draw()
 
     }
 

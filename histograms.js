@@ -1,11 +1,12 @@
-function Histograms(x, y, plotWidth, plotHeight, raw_data, bins, columns) {
+function Histograms(x, y, plotWidth, plotHeight) {
     var x = x;
     var y = y;
     var plotWidth = plotWidth;
     var plotHeight = plotHeight;
-    var raw_data = raw_data;
-    var bins = bins;
     var max_val = plotHeight
+
+    //mock data to test display
+    var data = [[100,200,399, 300, 200, 50], [100,200,200, 300, 400, 500]]
 
     var histograms = [];
 
@@ -15,8 +16,11 @@ function Histograms(x, y, plotWidth, plotHeight, raw_data, bins, columns) {
 
     var colors = ["red", "green", "blue"]
 
-    function dataProcessing() {
-        return
+    //receives raw_data and output array of frequency buckets for each
+    this.dataProcessing = function(raw_data, bins, columns) {
+         //mock data to test display
+        
+        return [[100,200,399, 300, 200, 50], [100,200,200, 300, 400, 500]]
     }
 
     function calculateMaxVal() {
@@ -37,14 +41,19 @@ function Histograms(x, y, plotWidth, plotHeight, raw_data, bins, columns) {
     
 
     function addHistogram() {
+        let data = this.dataProcessing(0,0,0)
         for (var i=0; i< groups.length; i++) {
-            histograms.push(new Histogram(x, y, plotWidth, plotHeight, data, groups[i], max_val))
+            histograms.push(new Histogram(x, y, plotWidth, plotHeight, data[i], groups[i], max_val))
         }
     }
 
     addGroup();
     addHistogram();
 
-    this.draw()
+    this.draw = function(){
+        for (var i=0; i<histograms.length; i++) {
+            histograms[i].draw()
+        }
+    }
 
 }
