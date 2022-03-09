@@ -21,5 +21,6 @@ function draw() {
   background(255);
   if (gallery.selectedVisual != null) {
     gallery.selectedVisual.draw();
+
   }
 }

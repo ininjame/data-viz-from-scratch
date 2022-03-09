@@ -1,5 +1,5 @@
 function payGapHist() {
-    this.id = 'Pay Gap Histogram'
+    // this.id = 'Pay Gap Histogram'
     // Name for the visualisation to appear in the menu bar.
     this.name = 'Pay Gap Histogram';
 
@@ -54,16 +54,17 @@ function payGapHist() {
 
     };
 
-    this.hist = new Histograms(width/8, 
-                                height/2, 
-                                width*0.8, 
-                                height*0.8)
 
     this.draw = function() {
         if (!this.loaded) {
             console.log('Data not yet loaded');
             return;
         }
+        // console.log(this.layout.leftMargin)
+        this.hist = new Histograms(this.layout.leftMargin, 
+                                    this.layout.topMargin, 
+                                    this.layout.plotWidth(), 
+                                    this.layout.plotHeight())
 
         this.hist.draw()
 
