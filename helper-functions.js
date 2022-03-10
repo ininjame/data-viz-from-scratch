@@ -127,4 +127,6 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
          x,
          layout.bottomMargin);
   }
+
 }
+
