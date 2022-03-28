@@ -1,8 +1,8 @@
-function Histogram(x, y, width, height, data, group) {
+function Histogram(x, y, w, h, data, group) {
     var x = x;
     var y = y;
-    var w = width;
-    var h = height;
+    var w = w;
+    var h = h;
      
     var buckets = []
 
@@ -10,7 +10,7 @@ function Histogram(x, y, width, height, data, group) {
 
     function addBuckets() {
         var bucketX = x; 
-        var step = 2
+        var step = 0
         var bucketWidth = (w-step*data.length)/data.length;
         var max_val = max(data)
         for (var i = 0; i < data.length; i++) {

@@ -1,11 +1,11 @@
-function payGapHist() {
+function HistGraph() {
     // this.id = 'Pay Gap Histogram'
     // Name for the visualisation to appear in the menu bar.
-    this.name = 'Pay Gap Histogram';
+    this.name = 'Housing data Histogram';
 
     // Each visualisation must have a unique ID with no special
     // characters.
-    this.id = 'pay-gap-hist';
+    this.id = 'housing-data';
 
     var marginSize = 35;
     //Chart layout
@@ -47,7 +47,7 @@ function payGapHist() {
     this.preload = function() {
         var self = this;
         this.data = loadTable(
-            'data/pay-gap/occupation-hourly-pay-by-gender-2017.csv','csv','header',
+            'data/housing_data.csv','csv','header',
         // Callback function to set the value
         // this.loaded to true.
         
@@ -90,11 +90,10 @@ function payGapHist() {
 
         //create slider for number of bins
         this.binSlider = createSlider(10, bestBins*3, bestBins, 1);
-        this.binSlider.position(400, 10);
+        this.binSlider.position(width*0.9, 140);
     };
 
     this.destroy = function() {
-        this.select.remove();
         this.binSlider.remove();
         this.selectCol1.remove();
         this.selectCol2.remove()
@@ -111,10 +110,9 @@ function payGapHist() {
 
         push()
         fill(0)
-        text("Bins :"+ bins, width*0.7,20)
+        text("Bins :"+ bins, width*0.6,120)
         pop()
 
-        // console.log(this.rawData)
 
         //Select only data for the columns that are selected from the dropdown
         this.graphData = {}
@@ -132,34 +130,23 @@ function payGapHist() {
                                     bins)
 
         this.hist.draw()
+        drawAxis(this.layout)
 
     }
 
     function getNumCols(data) {
+        //Take in raw data table, get numeric columns to use as raw data for histograms
         var numCols = {}
-        var numColHeaders = ['num_jobs_male','median_male','num_jobs_female','median_female','num_jobs','proportion_female','pay_gap']
-        // for(var i=0; i<data.getColumnCount(); i++) {
-        //     let colName = data.columns[i]
-        //     let colData = stringsToNumbers(data.getColumn(colName))
-
-            // var colType = 'number'
-            // for(var j=0; j<colData.length; j++) {
-            //     if (typeof(colData[j]) != 'number') {
-            //         colType = typeof(colData[j])
-            //     }
-            // }
-        //   if (colName in num) {
-        //     numCols[colName] = colData
-        //   }
-        //     numCols[colName] = colType
-        // }
-        // return numCols
+        
+        var numColHeaders = ['price','bedrooms','bathrooms','sqft_living','sqft_lot','floors','sqft_above']
+        
         for (var i=0; i<numColHeaders.length; i++) {
             numCols[numColHeaders[i]] = data.getColumn(numColHeaders[i])
         }
 
         return numCols
       
-      }
+    }
+
 
 }

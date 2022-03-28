@@ -14,7 +14,7 @@ function setup() {
   gallery = new Gallery();
 
   // Add the visualisation objects here.
-  gallery.addVisual(new payGapHist());
+  gallery.addVisual(new HistGraph());
 }
 
 function draw() {

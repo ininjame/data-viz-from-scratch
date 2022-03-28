@@ -5,6 +5,7 @@ function Histograms(x, y, plotWidth, plotHeight, rawData, bins) {
     var plotHeight = plotHeight;
     var rawData = rawData
     var bins = bins
+    var previous_bins = -1
 
     var colors = [color(252, 165, 2, 120), 
         color(2, 165, 252, 120)]
@@ -20,8 +21,7 @@ function Histograms(x, y, plotWidth, plotHeight, rawData, bins) {
 
     //receives raw_data and output array of frequency buckets for each
     this.dataProcessing = function(rawData, bins) {
-        //mock data to test display
-        // return [[100,200,399, 300, 200, 50], [100,200,200, 300, 400, 500]]
+        //Process data and slot them into bins depending on the number of bins chosen
         var graphData = []
         for (var key in rawData) {
             var histData = []
@@ -33,7 +33,7 @@ function Histograms(x, y, plotWidth, plotHeight, rawData, bins) {
                 for (var j=0; j< data.length; j++) {
                     if (data[j] >= i && data[j] < i+max_val/bins) counter += 1
                 }
-                histData.push(counter)
+                histData.push(counter/data.length)
             }
             graphData.push(histData)
         }
@@ -43,6 +43,8 @@ function Histograms(x, y, plotWidth, plotHeight, rawData, bins) {
 
 
     function addGroup() {
+        //Add necessary info to create multiple histograms: name and color
+        //Name will be fed into dropdown for user to choose
         for (var i=0; i< columns.length; i++) {
             var group = {
                 name: columns[i],
@@ -60,13 +62,18 @@ function Histograms(x, y, plotWidth, plotHeight, rawData, bins) {
         }
     }
 
-    this.graphData = this.dataProcessing(rawData, bins)
+    if (previous_bins != bins) {
+        this.graphData = this.dataProcessing(rawData, bins)
+    }
+    else {
+        previous_bins = bins
+    }
+    
     addGroup();
     addHistogram(this.graphData);
     
 
     this.draw = function(){
-        // console.log(rawData)
         for (var i=0; i<histograms.length; i++) {
             histograms[i].draw()
         }
