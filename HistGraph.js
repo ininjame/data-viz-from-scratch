@@ -131,6 +131,7 @@ function HistGraph() {
 
         this.hist.draw()
         drawAxis(this.layout)
+        drawAxisLabels("Buckets", "Freq in % of total", this.layout)
 
     }
 

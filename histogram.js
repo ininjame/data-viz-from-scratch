@@ -16,7 +16,8 @@ function Histogram(x, y, w, h, data, group) {
         for (var i = 0; i < data.length; i++) {
             var bucketHeight = map(data[i], 0, max_val, 0, h)
             // console.log(bucketHeight)
-            var bucketY = h - bucketHeight
+            // var bucketY = h - bucketHeight
+            var bucketY = y+h - bucketHeight
             buckets.push(new Bucket(bucketX, bucketY, bucketWidth, bucketHeight, group))
             bucketX += bucketWidth + step
         }

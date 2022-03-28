@@ -48,7 +48,7 @@ function drawAxis(layout, colour=0) {
 
   // x-axis
   line(layout.leftMargin,
-       layout.bottomMargin,
+      layout.bottomMargin,
        layout.rightMargin,
        layout.bottomMargin);
 

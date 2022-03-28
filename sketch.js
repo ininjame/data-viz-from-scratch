@@ -15,12 +15,22 @@ function setup() {
 
   // Add the visualisation objects here.
   gallery.addVisual(new HistGraph());
+  // noLoop();
 }
 
 function draw() {
   background(255);
   if (gallery.selectedVisual != null) {
     gallery.selectedVisual.draw();
-
   }
+  console.log("looping..")
+  noLoop()
+}
+
+function mousePressed(){
+  redraw()
+}
+
+function mouseReleased(){
+  redraw()
 }
